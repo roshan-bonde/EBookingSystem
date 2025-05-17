@@ -1,0 +1,29 @@
+package com.roshan.EBookingSystem.Entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Bus extends Vehicle {
+
+    // Bus number
+    private String busNumber;
+
+    // Bus company name
+    private String busCompanyName;
+
+    // Bus type (e.g., sleeper, semi-sleeper)
+    private String busType;
+
+    // Number of seats in the bus
+    private Integer numberOfSeats;
+
+    // Amenities available in the bus (e.g., Wi-Fi, AC)
+    private String amenities;
+
+    // Seat configuration (e.g., 2+2, 2+1)
+    private String seatConfiguration;
+
+    // Driver details (name, contact number)
+    private String driverDetails;
+
+}
