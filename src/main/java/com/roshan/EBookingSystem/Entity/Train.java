@@ -1,8 +1,10 @@
 package com.roshan.EBookingSystem.Entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Train")
 public class Train extends Vehicle{
 
     // Train number
@@ -16,12 +18,6 @@ public class Train extends Vehicle{
 
     // Number of coaches
     private Integer numberOfCoaches;
-
-    // Seat configuration (e.g., 2S, Sleeper, AC)
-    private String seatConfiguration;
-
-    // Amenities available (e.g., Wi-Fi, food service)
-    private String amenities;
 
     // Train speed in km/h
     private Double trainSpeed;

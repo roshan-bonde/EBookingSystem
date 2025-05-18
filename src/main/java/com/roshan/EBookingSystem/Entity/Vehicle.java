@@ -2,8 +2,11 @@ package com.roshan.EBookingSystem.Entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,20 +15,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-// @Table(name = "vehicles")
-public class Vehicle {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "type")
+public abstract class Vehicle {
 
     @Id
     // Unique ID for each vehicle
     private String id;
 
     // Type of vehicle (e.g., bus, train, etc.)
-    private String type;
-    private String from;
-    private String to;
+    // private String type;
+    private String fromCity;
+    private String toCity;
     private LocalDate dateOfJourney;
-    // Economy, Business, AC1, AC2, AC2, etc.
-    private String travelClass;
     private Double price;
     private String departureTime;
     private String arrivalTime;

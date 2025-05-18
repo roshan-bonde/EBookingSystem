@@ -1,20 +1,21 @@
 package com.roshan.EBookingSystem.Entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
+@DiscriminatorValue("Flight")
 public class Flight extends Vehicle {
 
     // Flight number
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
     // Airline name
     private String airlineName;
+
+    private String flightType; // e.g., domestic, international
+
+    private String flightClass; // e.g., economy, business, first class
 
     // Flight duration in hours
     private Double flightDuration;

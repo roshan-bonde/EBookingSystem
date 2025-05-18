@@ -9,7 +9,6 @@ import com.roshan.EBookingSystem.Entity.Vehicle;
 
 public interface VehicleRepo extends JpaRepository<Vehicle, String> {
 
-    ArrayList<Vehicle> findByFromAndToAndDateOfJourneyAndTravelClass(String from, String to, LocalDate dateOfJourvey,
-            String vehicleClass);
+    ArrayList<Vehicle> findByFromCityAndToCityAndDateOfJourney(String fromCity, String toCity, LocalDate dateOfJourvey);
 
 }

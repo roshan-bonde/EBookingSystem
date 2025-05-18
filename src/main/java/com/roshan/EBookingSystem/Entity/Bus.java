@@ -1,8 +1,10 @@
 package com.roshan.EBookingSystem.Entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Bus")
 public class Bus extends Vehicle {
 
     // Bus number
@@ -15,7 +17,7 @@ public class Bus extends Vehicle {
     private String busType;
 
     // Number of seats in the bus
-    private Integer numberOfSeats;
+    private Integer totalSeats;
 
     // Amenities available in the bus (e.g., Wi-Fi, AC)
     private String amenities;

@@ -34,27 +34,35 @@ public class VehicleController {
 
     @GetMapping("/search")
     public List<? extends Vehicle> search(@RequestParam String type, @RequestParam String from, @RequestParam String to,
-            @RequestParam String dateOfJourmey, @RequestParam String travelClass) {
+            @RequestParam String dateOfJourmey) {
 
         LocalDate doj = LocalDate.parse(dateOfJourmey);
 
-        return switch (type.toUpperCase()) {
-            case "FLIGHT" -> flightService.search(from, to, doj, travelClass);
-            case "TRAIN" -> trainService.search(from, to, doj, travelClass);
-            case "BUS" -> busService.search(from, to, doj, travelClass);
-            default -> Collections.emptyList();
-        };
+        switch (type.toUpperCase()) {
+            case "FLIGHT":
+                flightService.search(from, to, doj);
+            case "TRAIN":
+                return trainService.search(from, to, doj);
+            case "BUS":
+                return busService.search(from, to, doj);
+            default:
+                return Collections.emptyList();
+        }
     }
 
     @GetMapping("/id")
     public ResponseEntity<? extends Vehicle> getDaeatils(@PathVariable String id, @RequestParam String type) {
 
-        return switch(type.toUpperCase()) {
-            case "FLIGHT" -> flightService.getDatails(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-            case "TRAIN" -> trainService.getDatails(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-            case "BUS" -> busService.getDatails(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-            default -> ResponseEntity.badRequest().build();
-        };
+        switch (type.toUpperCase()) {
+            case "FLIGHT":
+                return flightService.getDatails(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+            case "TRAIN":
+                return trainService.getDatails(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+            case "BUS":
+                return busService.getDatails(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+            default:
+                return ResponseEntity.badRequest().build();
+        }
     }
 
 }

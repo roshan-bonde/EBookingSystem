@@ -1,6 +1,8 @@
 package com.roshan.EBookingSystem.Entity;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 @Entity
@@ -8,6 +10,7 @@ import lombok.Data;
 public class Booking {
 
     // Unique ID for each booking
+    @Id
     private String bookingId;
 
     // User ID of the person who made the booking
@@ -22,9 +25,9 @@ public class Booking {
     // Date of jourvey
     private String dataOfJourney;
 
-    private String from;
+    private String fromCity;
 
-    private String to;
+    private String toCity;
 
     // Total amount paid for the booking
     private Double totalAmount;

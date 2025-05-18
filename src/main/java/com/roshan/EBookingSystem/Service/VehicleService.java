@@ -9,7 +9,7 @@ import com.roshan.EBookingSystem.Entity.Vehicle;
 
 public interface VehicleService {
 
-    List<? extends Vehicle> search(String from, String to, LocalDate dateOfJourney, String vehicleClass) ;
+    List<? extends Vehicle> search(String from, String to, LocalDate dateOfJourney) ;
 
     Optional<? extends Vehicle> getDatails(String id);
 }
