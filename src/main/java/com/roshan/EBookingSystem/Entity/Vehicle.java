@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -21,6 +23,7 @@ public abstract class Vehicle {
 
     @Id
     // Unique ID for each vehicle
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     // Type of vehicle (e.g., bus, train, etc.)

@@ -1,7 +1,8 @@
 package com.roshan.EBookingSystem.Entity;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -11,18 +12,21 @@ public class Booking {
 
     // Unique ID for each booking
     @Id
-    private String bookingId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer bookingId;
 
     // User ID of the person who made the booking
     private Integer userId;
+    private String email;
 
     // Vehicle ID of the booked vehicle
     private String vehicleId;
+    private String vehicleType;
 
     // Date of booking
     private String bookingDate;
 
-    // Date of jourvey
+    // Date of journey
     private String dataOfJourney;
 
     private String fromCity;

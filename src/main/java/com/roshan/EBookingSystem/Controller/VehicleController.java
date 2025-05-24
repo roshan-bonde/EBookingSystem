@@ -50,8 +50,8 @@ public class VehicleController {
         }
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<? extends Vehicle> getDaeatils(@PathVariable String id, @RequestParam String type) {
+    @GetMapping("/{type}/{id}")
+    public ResponseEntity<? extends Vehicle> getDaeatils(@PathVariable String type, @PathVariable String id) {
 
         switch (type.toUpperCase()) {
             case "FLIGHT":
