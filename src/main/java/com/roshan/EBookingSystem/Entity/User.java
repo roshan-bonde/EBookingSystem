@@ -30,8 +30,10 @@ public class User {
     @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)    
     private String password;
-    
+
+    @Column(unique = true, nullable = false)
     private String email;
+    
     private String phoneNumber;
     private Date dateOfBirth;
 

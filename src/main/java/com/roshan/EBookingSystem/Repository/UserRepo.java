@@ -11,9 +11,9 @@ import jakarta.transaction.Transactional;
 
 
 public interface UserRepo extends JpaRepository<User, Integer>{
-
-    User findByUserNameAndPassword(String userName, String password);
-
+    
+    User findByUserName(String userName);
+    
     @Transactional
     @Modifying
     @Query("DELETE FROM User u WHERE u.userName = :userName AND u.password = :password")

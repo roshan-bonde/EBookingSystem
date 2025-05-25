@@ -3,6 +3,7 @@ package com.roshan.EBookingSystem.Controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +30,8 @@ public class LoginController {
     
     @PostMapping("/login")  
     public String login(@RequestBody User user) {
-        User u = userService.getUserByUserName(user);
-        if (u != null){
+        boolean authenticated = userService.authenticateUser(user);
+        if (authenticated){
             return "Login Successful";
         }  else {
             return "Login failed";
@@ -38,13 +39,15 @@ public class LoginController {
     }
 
     @PostMapping("/signup") 
-    public void signup(@RequestBody User user){
+    public HttpStatus signup(@RequestBody User user){
         userService.addUser(user);
+        return HttpStatus.CREATED;
     }
 
     @DeleteMapping("/delete")
-    public boolean delete(@RequestBody User user) {
-        return userService.deleteUser(user) > 0 ? true : false;
+    public HttpStatus delete(@RequestBody User user) {
+        userService.deleteUser(user);
+        return HttpStatus.OK;
     }
 
     @PutMapping("/user/update/{userId}")

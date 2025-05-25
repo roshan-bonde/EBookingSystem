@@ -20,7 +20,7 @@ public class Booking {
     private String email;
 
     // Vehicle ID of the booked vehicle
-    private String vehicleId;
+    private Integer vehicleId;
     private String vehicleType;
 
     // Date of booking

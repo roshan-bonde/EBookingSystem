@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.roshan.EBookingSystem.Entity.User;
 import com.roshan.EBookingSystem.Repository.UserRepo;
+import com.roshan.EBookingSystem.Security.PasswordUtil;
 
 @Service
 public class UserService {
@@ -16,20 +17,29 @@ public class UserService {
         return userRepo.findById(userId).orElse(null);
     }
 
-    public User getUserByUserName(User user) {
-        return userRepo.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+    // Authenticate User (Check Password)
+    public boolean authenticateUser(User user) {
+        User storedUser = userRepo.findByUserName(user.getUserName());
+        return storedUser != null && PasswordUtil.checkPassword(user.getPassword(), storedUser.getPassword());
     }
+    
 
     public Iterable<User> getAllUser() {
         return userRepo.findAll();
     }
 
+     // Add user with hashed password
     public void addUser(User user) {
+        user.setPassword(PasswordUtil.hashPassword(user.getPassword())); // Hash password before saving
         userRepo.save(user);
     }
 
-    public Integer deleteUser(User user) {
-        return userRepo.deleteByUserNameAndPassword(user.getUserName(), user.getPassword());
+    // Delete user (ensure authentication first)
+    public void deleteUser(User user) {
+        User storedUser = userRepo.findByUserName(user.getUserName());
+        if (storedUser != null && PasswordUtil.checkPassword(user.getPassword(), storedUser.getPassword())) {
+            userRepo.delete(storedUser);
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.roshan.EBookingSystem.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -8,6 +9,7 @@ import jakarta.persistence.Entity;
 public class Bus extends Vehicle {
 
     // Bus number
+    @Column(unique = true, nullable = false)
     private String busNumber;
 
     // Bus company name
