@@ -27,7 +27,7 @@ public class Booking {
     private String bookingDate;
 
     // Date of journey
-    private String dataOfJourney;
+    private String dateOfJourney;
 
     private String fromCity;
 

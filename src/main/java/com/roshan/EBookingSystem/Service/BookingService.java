@@ -1,10 +1,15 @@
 package com.roshan.EBookingSystem.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.roshan.EBookingSystem.Dto.BookingRequest;
 import com.roshan.EBookingSystem.Entity.Booking;
 import com.roshan.EBookingSystem.Entity.Bus;
@@ -47,7 +52,7 @@ public class BookingService {
 
         booking.setUserId(request.getUserId());
         booking.setBookingDate(LocalDate.now().toString());
-        booking.setDataOfJourney(request.getDateOfJourney());
+        booking.setDateOfJourney(request.getDateOfJourney());
         booking.setFromCity(request.getFromCity());
         booking.setToCity(request.getToCity());
         booking.setVehicleId(vehicle.getId());
@@ -69,5 +74,38 @@ public class BookingService {
         Booking saved = bookingRepo.save(booking);
 
         return saved;
+    }
+
+    public byte[] generateTicketPdf(Integer bookingId) {
+        Booking booking = bookingRepo.findById(bookingId).orElseThrow(() -> new RuntimeException("Booking not found with id: " + bookingId));
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, out);
+            doc.open();
+
+            doc.add(new Paragraph("Booking Details"));
+            doc.add(new Paragraph("Booking ID: " + booking.getBookingId()));
+            doc.add(new Paragraph("User ID: " + booking.getUserId()));
+            doc.add(new Paragraph("From City: " + booking.getFromCity()));
+            doc.add(new Paragraph("To City: " + booking.getToCity()));
+            doc.add(new Paragraph("Date of Journey: " + booking.getDateOfJourney()));
+            doc.add(new Paragraph("Price: " + booking.getTotalAmount()));
+            doc.add(new Paragraph("Vehicle Type: " + booking.getVehicleType()));
+
+            doc.close();
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error generating PDF: " + e.getMessage(), e);
+        }
+        return out.toByteArray();
+    }
+
+    public ArrayList<Booking> getBookingByEmail(String email) {
+        return bookingRepo.findByEmail(email);
+    }
+    public ArrayList<Booking> getBookingByEmailAndDateOfJourney(String email, String dateOfJourney) {
+        return bookingRepo.findByEmailAndDateOfJourney(email, dateOfJourney);
     }
 }
