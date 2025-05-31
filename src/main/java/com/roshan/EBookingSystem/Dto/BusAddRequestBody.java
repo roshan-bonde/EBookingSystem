@@ -1,19 +1,22 @@
-package com.roshan.EBookingSystem.Entity;
+package com.roshan.EBookingSystem.Dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import java.time.LocalDate;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
-@DiscriminatorValue("Bus")
-public class Bus extends Vehicle {
+@NoArgsConstructor
+public class BusAddRequestBody {
 
-    // Bus number
-    @Column(unique = true, nullable = false)
+    private String fromCity;
+    private String toCity;
+    private LocalDate dateOfJourney;
+    private Double price;
+    private String departureTime;
+    private String arrivalTime;
+    private String midStations; // Comma seprated list
+
     private String busNumber;
 
     // Bus company name
@@ -33,5 +36,4 @@ public class Bus extends Vehicle {
 
     // Driver details (name, contact number)
     private String driverDetails;
-
 }

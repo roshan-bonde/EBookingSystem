@@ -1,5 +1,7 @@
 package com.roshan.EBookingSystem.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,7 @@ public class Booking {
     // Unique ID for each booking
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)    
     private Integer bookingId;
 
     // User ID of the person who made the booking

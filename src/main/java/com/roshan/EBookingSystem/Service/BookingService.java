@@ -3,6 +3,7 @@ package com.roshan.EBookingSystem.Service;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,13 +37,13 @@ public class BookingService {
         
         switch (request.getVehicleType().toUpperCase()) {
             case "FLIGHT":
-                vehicle = flightService.getDatails(request.getVehicleId()).orElseThrow(() -> new RuntimeException("Flight not found"));
+                vehicle = flightService.getDetails(request.getVehicleId()).orElseThrow(() -> new RuntimeException("Flight not found"));
                 break;
             case "TRAIN":
-                vehicle = trainService.getDatails(request.getVehicleId()).orElseThrow(() -> new RuntimeException("Train not found"));
+                vehicle = trainService.getDetails(request.getVehicleId()).orElseThrow(() -> new RuntimeException("Train not found"));
                 break;
             case "BUS":
-                vehicle = busService.getDatails(request.getVehicleId()).orElseThrow(() -> new RuntimeException("Bus not found"));
+                vehicle = busService.getDetails(request.getVehicleId()).orElseThrow(() -> new RuntimeException("Bus not found"));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid vehicle type: " + request.getVehicleType());
@@ -107,5 +108,8 @@ public class BookingService {
     }
     public ArrayList<Booking> getBookingByEmailAndDateOfJourney(String email, String dateOfJourney) {
         return bookingRepo.findByEmailAndDateOfJourney(email, dateOfJourney);
+    }
+    public List<Booking> getAllBookings() {
+        return bookingRepo.findAll();
     }
 }

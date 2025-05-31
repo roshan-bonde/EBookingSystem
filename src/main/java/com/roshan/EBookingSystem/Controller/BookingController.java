@@ -3,6 +3,7 @@ package com.roshan.EBookingSystem.Controller;
 import org.springframework.http.HttpHeaders;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,6 +61,15 @@ public class BookingController {
         } else {
             bookings = bookingService.getBookingByEmail(email);
         }
+        if (bookings.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+
+    @GetMapping("/booking/all")
+    public ResponseEntity<List<Booking>> getAllBookings() {
+        List<Booking> bookings = bookingService.getAllBookings();
         if (bookings.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

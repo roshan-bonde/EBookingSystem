@@ -1,21 +1,26 @@
 package com.roshan.EBookingSystem.Service;
 
+import java.util.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.roshan.EBookingSystem.Repository.BusRepo;
 import com.roshan.EBookingSystem.Repository.VehicleRepo;
 import com.roshan.EBookingSystem.Entity.Bus;
 
 @Service
-public class BusService implements VehicleService {
+public class BusService implements VehicleService<Bus> {
 
     @Autowired
     private VehicleRepo vehicleRepo;
+
+    @Autowired BusRepo busRepo;
 
     @Override
     public ArrayList<Bus> search(String from, String to, LocalDate dateOfJourmey) {
@@ -26,8 +31,14 @@ public class BusService implements VehicleService {
     }
 
     @Override
-    public Optional<Bus> getDatails(String id) {
+    public Optional<Bus> getDetails(String id) {
         return vehicleRepo.findById(id).filter(vehicle -> vehicle instanceof Bus).map(vehicle -> (Bus)vehicle);
+    }
+
+    @Override
+    public Bus add(Bus bus) {
+        busRepo.save(bus);
+        return bus;
     }
 
 }

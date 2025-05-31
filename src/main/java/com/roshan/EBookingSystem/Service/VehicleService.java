@@ -1,15 +1,20 @@
 package com.roshan.EBookingSystem.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
 
 import com.roshan.EBookingSystem.Entity.Vehicle;
 
 
-public interface VehicleService {
+public interface VehicleService<T extends Vehicle> {
 
-    List<? extends Vehicle> search(String from, String to, LocalDate dateOfJourney) ;
+    List<T> search(String from, String to, LocalDate dateOfJourney) ;
 
-    Optional<? extends Vehicle> getDatails(String id);
+    Optional<T> getDetails(String id);
+
+    T add(T t);
 }

@@ -19,3 +19,11 @@ INSERT INTO public.flight(
 INSERT INTO public.train(
 	id, number_of_coaches, train_speed, operator_name, train_name, train_number, train_type)
 	VALUES (2, 16, 120, 'Indian Railways', 'SBC Rajhdani', 22962, 'AC');
+
+	--New Queries
+	INSERT INTO public.bus(
+	date_of_journey, id, price, total_seats, amenities, arrival_time, bus_company_name, bus_number, bus_type, departure_time, driver_details, from_city, mid_stations, seat_configuration, to_city)
+	VALUES (current_date, 1, 1200, 1, 'WiFi, AC', current_date, 'Sharad Travels', 12345, 'Sleeper', current_timestamp, 'Sharad Kumar', 'Nagpur', 'Pune', '1+2', 'Ratnagiri');
+	INSERT INTO public.train(
+	date_of_journey, id, number_of_coaches, price, train_speed, arrival_time, departure_time, from_city, mid_stations, operator_name, to_city, train_name, train_number, train_type)
+	VALUES (current_timestamp, 2, 13, 2300, 180, current_timestamp, current_timestamp, 'Nagpur', 'Secunderabad, Hyderabad', 'Indian Railways', 'Bangalore', 'SBC Rajhdani', 22963, 'AC type-1');
