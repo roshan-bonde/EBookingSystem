@@ -1,8 +1,4 @@
-
-
-## Tech Stack: Java, Spring Boot, JPA, Postres(Database), Maevn(Build Tool)
-
-## To launch Swagger UI: http://localhost:8080/swagger-ui/index.html
+## Tech Stack: Java, Spring Boot, JPA, Postres(Database), Maven(Build Tool)
 
 ## Project Overview
 
