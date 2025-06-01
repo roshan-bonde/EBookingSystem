@@ -1,6 +1,5 @@
 package com.roshan.EBookingSystem.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.roshan.EBookingSystem.Repository.BusRepo;
