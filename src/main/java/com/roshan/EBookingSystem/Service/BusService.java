@@ -1,6 +1,7 @@
 package com.roshan.EBookingSystem.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -37,8 +38,15 @@ public class BusService implements VehicleService<Bus> {
 
     @Override
     public Bus add(Bus bus) {
-        busRepo.save(bus);
-        return bus;
+        return busRepo.save(bus); 
+    }
+
+    @Override
+    public List<Bus> getAll() {
+        return busRepo.findAll().stream()
+                .filter(vehicle -> vehicle instanceof Bus)
+                .map(vehicle -> (Bus) vehicle)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

@@ -39,8 +39,15 @@ public class TrainService implements VehicleService<Train> {
 
     @Override
     public Train add(Train train) {
-        trainRepo.save(train);
-        return train;
+        return trainRepo.save(train);
+    }
+
+    @Override
+    public List<Train> getAll() {
+        return trainRepo.findAll().stream()
+                .filter(vehicle -> vehicle instanceof Train)
+                .map(vehicle -> (Train) vehicle)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

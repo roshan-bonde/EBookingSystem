@@ -2,13 +2,11 @@ package com.roshan.EBookingSystem.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.roshan.EBookingSystem.Repository.FlightRepo;
@@ -38,8 +36,15 @@ public class FlightService implements VehicleService<Flight> {
 
     @Override
     public Flight add(Flight flight) {
-        flightRepo.save(flight);
-        return flight;
+         return flightRepo.save(flight);
+    }
+
+    @Override
+    public List<Flight> getAll() {
+        return flightRepo.findAll().stream()
+                .filter(vehicle -> vehicle instanceof Flight)
+                .map(vehicle -> (Flight) vehicle)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

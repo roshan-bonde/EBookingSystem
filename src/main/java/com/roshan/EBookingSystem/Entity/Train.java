@@ -3,8 +3,12 @@ package com.roshan.EBookingSystem.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
+@Data
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("Train")
 public class Train extends Vehicle{
 

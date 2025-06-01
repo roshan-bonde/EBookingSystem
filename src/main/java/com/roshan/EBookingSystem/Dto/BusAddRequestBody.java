@@ -3,10 +3,8 @@ package com.roshan.EBookingSystem.Dto;
 import java.time.LocalDate;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class BusAddRequestBody {
 
     private String fromCity;

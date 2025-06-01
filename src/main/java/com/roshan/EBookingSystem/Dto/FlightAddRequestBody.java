@@ -1,19 +1,22 @@
-package com.roshan.EBookingSystem.Entity;
+package com.roshan.EBookingSystem.Dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import java.time.LocalDate;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
-@DiscriminatorValue("Flight")
-public class Flight extends Vehicle {
+public class FlightAddRequestBody {
 
-    // Flight number
-    @Column(unique = true, nullable = false)
+    // Type of vehicle (e.g., bus, train, etc.)
+    // private String type;
+    private String fromCity;
+    private String toCity;
+    private LocalDate dateOfJourney;
+    private Double price;
+    private String departureTime;
+    private String arrivalTime;
+    private String midStations; // Comma seprated list
+
     private String flightNumber;
 
     // Airline name
@@ -40,5 +43,4 @@ public class Flight extends Vehicle {
 
     // Seat configuration (e.g., 2-4-2, 3-3-3)
     private String seatConfiguration;
-
 }
